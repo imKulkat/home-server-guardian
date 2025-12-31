@@ -1,0 +1,17 @@
+services:
+  vesa-stats:
+    build: .
+    container_name: vesa-stats
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - proxy
+    environment:
+      - TZ=UTC
+
+networks:
+  proxy:
+    external: true
